@@ -1,15 +1,50 @@
 {
-  "pluginAlias": "ExampleHomebridgePlugin",
-  "pluginType": "platform",
-  "singular": true,
+  "pluginAlias": "AcondTherm",
+  "pluginType": "accessory",
   "schema": {
     "type": "object",
     "properties": {
       "name": {
-        "title": "Name",
+        "title": "Accessory Name",
         "type": "string",
         "required": true,
-        "default": "Example Dynamic Platform"
+        "placeholder": "AcondTherm"
+      },
+      "deviceIPAddress": {
+        "title": "AcondTherm IP Address",
+        "type": "string",
+        "required": true,
+        "placeholder": "192.168.1.1"
+      },
+      "pollingIntervalSeconds": {
+        "title": "Time in seconds after we repeat the request for status of the device",
+        "type": "number",
+        "required": false,
+        "placeholder": "5"
+      },
+      "minHeatingTemperature": {
+        "title": "Minimum Heating Temperature",
+        "type": "number",
+        "required": false,
+        "placeholder": 10
+      },
+      "maxHeatingTemperature": {
+        "title": "Maximum Heating Temperature",
+        "type": "number",
+        "required": false,
+        "placeholder": 30
+      },
+      "minTUVTemperature": {
+        "title": "Minimum TUV Temperature",
+        "type": "number",
+        "required": false,
+        "placeholder": 10
+      },
+      "maxTUVTemperature": {
+        "title": "Maximum TUV Temperature",
+        "type": "number",
+        "required": false,
+        "placeholder": 55
       }
     }
   }

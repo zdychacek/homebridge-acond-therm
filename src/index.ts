@@ -1,11 +1,11 @@
-import { API } from 'homebridge';
+import { API } from "homebridge";
 
-import { PLATFORM_NAME } from './settings';
-import { ExampleHomebridgePlatform } from './platform';
+import { PLUGIN_NAME, ACCESORY_NAME } from "./settings";
+import AcondThermPlugin from "./AcondThermPlugin";
 
-/**
- * This method registers the platform with Homebridge
+/*
+ * Initializer function called when the plugin is loaded.
  */
 export = (api: API) => {
-  api.registerPlatform(PLATFORM_NAME, ExampleHomebridgePlatform);
+  api.registerAccessory(PLUGIN_NAME, ACCESORY_NAME, AcondThermPlugin);
 };
