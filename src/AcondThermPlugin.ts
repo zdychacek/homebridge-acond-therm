@@ -377,6 +377,19 @@ export default class AcondThermPlugin implements AccessoryPlugin {
     );
   }
 
+  getSignedNumber(decimalNumber: number) {
+    const binStr = (decimalNumber >>> 0).toString(2);
+
+    return (
+      parseInt(
+        binStr.length >= 8 && binStr[0] === "1"
+          ? binStr.padStart(32, "1")
+          : binStr.padStart(32, "0"),
+        2,
+      ) >> 0
+    );
+  }
+
   async readDeviceState(): Promise<DeviceState> {
     const client = await this.getClient();
 
@@ -394,7 +407,8 @@ export default class AcondThermPlugin implements AccessoryPlugin {
       currentTUVTemperature: values[InputRegister.CurrentTUVTemperature] / 10,
       targetTUVTemperature: values[InputRegister.TargetTUVTemperature] / 10,
       status: values[InputRegister.Status],
-      currAirTemperature: values[InputRegister.CurrentAirTemperature] / 10,
+      currAirTemperature:
+        this.getSignedNumber(values[InputRegister.CurrentAirTemperature]) / 10,
     };
   }
 
