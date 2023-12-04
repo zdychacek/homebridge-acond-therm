@@ -377,17 +377,16 @@ export default class AcondThermPlugin implements AccessoryPlugin {
     );
   }
 
-  getSignedNumber(decimalNumber: number) {
-    const binStr = (decimalNumber >>> 0).toString(2);
+  getSignedNumber(num: number) {
+    // Truncate number to 8 bits
+    const truncatedNumber = num & 0xff;
 
-    return (
-      parseInt(
-        binStr.length >= 8 && binStr[0] === "1"
-          ? binStr.padStart(32, "1")
-          : binStr.padStart(32, "0"),
-        2,
-      ) >> 0
-    );
+    // If the highest bit is set, the number is negative
+    if (truncatedNumber & 0x80) {
+      return truncatedNumber - 256;
+    }
+
+    return truncatedNumber;
   }
 
   async readDeviceState(): Promise<DeviceState> {
