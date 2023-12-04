@@ -1,7 +1,7 @@
 {
   "displayName": "Acond Therm Plugin",
   "name": "homebridge-acond-therm",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Plugin for Acond Therm.",
   "license": "Apache-2.0",
   "repository": {
